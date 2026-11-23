@@ -1,0 +1,82 @@
+/* 画面と印刷で共通の文書スタイル */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #edf1f5;
+  color: #243247;
+  font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.manual {
+  counter-reset: figure-number table-number;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 48px 56px;
+  background: white;
+  box-shadow: 0 4px 24px #24324714;
+}
+.document-label { color: #52647b; font-size: .85rem; letter-spacing: .08em; }
+h1, h2, h3, h4 { line-height: 1.45; }
+h1 { font-size: 2rem; margin: 16px 0 24px; }
+h2 {
+  margin-top: 48px;
+  padding: 12px 16px;
+  background: #e8eef7;
+  border-left: 6px solid #284e7c;
+  font-size: 1.5rem;
+}
+h3 { margin-top: 32px; padding-bottom: 8px; border-bottom: 2px solid #a8b9cd; font-size: 1.2rem; }
+h4 { margin-top: 24px; font-size: 1.05rem; color: #284e7c; }
+
+/* 2つ目以降の部。画面では余白、印刷では改ページ。 */
+h2 ~ h2 { margin-top: 64px; }
+.note, .warning { margin: 24px 0; padding: 12px 20px; border: 1px solid; border-left-width: 5px; border-radius: 4px; }
+.note { background: #eef6ff; border-color: #386a9e; }
+.warning { background: #fff6e8; border-color: #98600c; }
+.note > :first-child, .warning > :first-child { margin-top: 0; }
+.note > :last-child, .warning > :last-child { margin-bottom: 0; }
+blockquote { margin: 24px 0; padding: 4px 20px; color: #4d5868; border-left: 4px solid #8793a2; background: #f5f6f8; }
+code { font-family: ui-monospace, monospace; background: #eef1f5; padding: .12em .3em; border-radius: 3px; }
+pre { padding: 16px; background: #eef1f5; white-space: pre-wrap; }
+pre code { padding: 0; }
+
+/* 図と表は独立した文書全体の連番。番号を原稿へ手入力しない。 */
+.numbered-figure { counter-increment: figure-number; margin: 24px 0; }
+.numbered-figure img { display: block; width: 100%; height: auto; }
+.numbered-figure > p { margin: 0 0 8px; }
+figcaption, caption { font-weight: bold; font-size: .9em; color: #284e7c; }
+figcaption { text-align: center; }
+.numbered-figure > figcaption::before { content: "図" counter(figure-number) "　"; }
+.numbered-table { counter-increment: table-number; }
+.numbered-table > caption::before { content: "表" counter(table-number) "　"; }
+table { width: 100%; border-collapse: collapse; margin: 24px 0; table-layout: fixed; }
+caption { caption-side: top; text-align: left; padding-bottom: 8px; }
+th, td { border: 1px solid #a8b9cd; padding: 8px 12px; text-align: left; vertical-align: top; }
+th { background: #e8eef7; }
+
+@media screen and (max-width: 640px) {
+  .manual { margin: 0; padding: 24px 20px; }
+  h1 { font-size: 1.65rem; }
+}
+
+/* PDF用の用紙サイズと余白 */
+@page { size: A4 portrait; margin: 18mm 16mm; }
+@media print {
+  body { background: white; color: #111; font-size: 10pt; }
+  .manual { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+  h1 { font-size: 21pt; }
+  h2 { font-size: 16pt; }
+  h3 { font-size: 13pt; }
+  h4 { font-size: 11pt; }
+  h2 ~ h2 { break-before: page; margin-top: 0; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  .note, .warning, blockquote, pre, figure, tr { break-inside: avoid; }
+  caption { break-after: avoid; }
+  thead { display: table-header-group; }
+  p, li { orphans: 3; widows: 3; }
+  .note, .warning, h2, blockquote, th {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 180" role="img" aria-labelledby="title desc">
+  <title id="title">マニュアル生成の流れ</title>
+  <desc id="desc">Markdownの原稿をEleventyでビルドしてHTMLを生成し、ブラウザーの印刷機能でPDFに保存します。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#284e7c"/></marker>
+  </defs>
+  <rect width="800" height="180" rx="8" fill="#f5f8fc"/>
+  <g fill="#fff" stroke="#284e7c" stroke-width="2">
+    <rect x="20" y="45" width="150" height="80" rx="8"/>
+    <rect x="220" y="45" width="150" height="80" rx="8"/>
+    <rect x="420" y="45" width="150" height="80" rx="8"/>
+    <rect x="620" y="45" width="150" height="80" rx="8"/>
+  </g>
+  <g stroke="#284e7c" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M175 85 H210"/><path d="M375 85 H410"/><path d="M575 85 H610"/>
+  </g>
+  <g text-anchor="middle" fill="#243247" font-family="sans-serif">
+    <g font-size="22" font-weight="bold">
+      <text x="95" y="80">Markdown</text><text x="295" y="80">Eleventy</text>
+      <text x="495" y="80">HTML</text><text x="695" y="80">PDF</text>
+    </g>
+    <g font-size="15">
+      <text x="95" y="107">原稿を編集</text><text x="295" y="107">ビルド</text>
+      <text x="495" y="107">表示を確認</text><text x="695" y="107">印刷して保存</text>
+      <text x="400" y="158">本文・レイアウト・CSSから、配布用の文書へ</text>
+    </g>
+  </g>
+</svg>
